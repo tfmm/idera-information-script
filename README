@@ -1,0 +1,102 @@
+What is it?
+
+This script gives some basic information on the customer server settings related to Guardian Backups. This script works on both CentOS / RedHat and Debian based servers.
+[edit]How to use it
+
+To call the script, copy and paste the following into the customer's server:
+bash <(curl -qs http://layer3.liquidweb.com/monitoring/guardian.sh)
+[edit]Why is it Useful? / Common Issues that can be Found
+
+BUAgent or CDP Agent not running
+Kernel / Headers versions mismatch
+HCP Module version being Greater than 4.4 on CentOS 5.x servers
+Backup Network Interface misconfiguration
+Backup Network Route misconfiguration (For CDP5/Idera only)
+Errors / Dropped packets on Backup Network interface (Could mean bad NIC or bad cable)
+[edit]The Output
+
+Here is the complete output of the command on a CentOS server with Guardian:
+BUAgent / CDP Agent status:
+
+/etc/init.d/cdp-agent status: cdp (pid 12687) running
+
+Current 10.x IPs on server
+eth0      Link encap:Ethernet  HWaddr BC:AE:C5:23:84:F5
+          inet addr:10.30.9.61  Bcast:10.30.9.63  Mask:255.255.255.240
+          inet6 addr: fe80::beae:c5ff:fe23:84f5/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:3187343750 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2388174011 errors:0 dropped:0 overruns:0 carrier:0
+--
+eth1      Link encap:Ethernet  HWaddr BC:AE:C5:23:86:8E
+          inet addr:10.31.48.4  Bcast:10.31.48.255  Mask:255.255.255.0
+          inet6 addr: fe80::beae:c5ff:fe23:868e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:131309446 errors:2 dropped:0 overruns:0 frame:2
+          TX packets:468818348 errors:0 dropped:0 overruns:0 carrier:0
+
+Currently set Network Routes
+#198.64.248.201 via 10.30.71.10 dev eth0
+64.91.239.0/27 via 10.31.48.1 dev eth1
+
+Operating System and Version
+CentOS release 6.5 (Final)
+
+Kernel Version
+2.6.32-358.6.2.el6.x86_64
+
+kernel-headers Version
+kernel-headers-2.6.32-431.3.1.el6.x86_64
+
+Backup / CDP Agent Version
+serverbackup-async-agent-2-6-5.4.2-71.x86_64
+serverbackup-agent-5.4.2-71.x86_64
+serverbackup-setup-5.4.2-71.x86_64
+serverbackup-enterprise-agent-5.4.2-71.x86_64
+
+HCP Module Version
+hcp driver module: 4.4.0 build: 18929
+[edit]Output, by Section
+
+BUAgent / CDP Agent status:
+
+/etc/init.d/cdp-agent status: cdp (pid 12687) running
+This shows the status of either the cdp-agent (CDP5) or buagent (CDP2)
+
+ Current 10.x IPs on server
+eth0      Link encap:Ethernet  HWaddr BC:AE:C5:23:84:F5
+          inet addr:10.30.9.61  Bcast:10.30.9.63  Mask:255.255.255.240
+          inet6 addr: fe80::beae:c5ff:fe23:84f5/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:3187343750 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2388174011 errors:0 dropped:0 overruns:0 carrier:0
+--
+eth1      Link encap:Ethernet  HWaddr BC:AE:C5:23:86:8E
+          inet addr:10.31.48.4  Bcast:10.31.48.255  Mask:255.255.255.0
+          inet6 addr: fe80::beae:c5ff:fe23:868e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:131309446 errors:2 dropped:0 overruns:0 frame:2
+          TX packets:468818348 errors:0 dropped:0 overruns:0 carrier:0
+This shows all 10.x.x.x IPs assigned and active on the server, these may be Guardian, they may be other internal services as well.
+Currently set Network Routes
+#198.64.248.201 via 10.30.71.10 dev eth0
+64.91.239.0/27 via 10.31.48.1 dev eth1
+This shows all Network Routes, which are necessary for CDP5/Idera.
+Operating System and Version
+CentOS release 6.5 (Final)
+Shows the Operating System and Version.
+Kernel Version
+2.6.32-358.6.2.el6.x86_64
+Shows the Kernel Version the server is currently running on.
+kernel-headers Version
+kernel-headers-2.6.32-431.3.1.el6.x86_64
+Shows the Kernel Headers (Linux Headers for Debian-based) version that is currently installed on the server.
+Backup / CDP Agent Version
+serverbackup-async-agent-2-6-5.4.2-71.x86_64
+serverbackup-agent-5.4.2-71.x86_64
+serverbackup-setup-5.4.2-71.x86_64
+serverbackup-enterprise-agent-5.4.2-71.x86_64
+Shows the BUAgent / CDP agent versions.
+HCP Module Version
+hcp driver module: 4.4.0 build: 18929
+Shows the HCP Module Version.
