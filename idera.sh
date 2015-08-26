@@ -1,6 +1,6 @@
-#!/bin/bash
+!/bin/bash
 #########################################
-# ==CDP Information Script== Created by rlong, all questions or comments to rlong@liquidweb.com with "Guardian Script" as subject.
+# ==CDP Information Script== Created by TFMM.
 #
 #########################################
 #
